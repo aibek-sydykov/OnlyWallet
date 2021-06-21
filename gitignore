@@ -1,3 +1,4 @@
+.idea/
 manage.py/ 
 my_env/
 db.sqlite3

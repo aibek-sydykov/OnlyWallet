@@ -1,3 +1,4 @@
-/manage.py 
-/my_env
+manage.py/ 
+my_env/
 db.sqlite3
+.vscode/

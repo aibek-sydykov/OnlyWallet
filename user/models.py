@@ -27,11 +27,10 @@ class MyUserManager(BaseUserManager):
         return self._create_user(username, password, **extra_fields)
 
 class User(AbstractUser):
-    patronymic = models.CharField('Отчество', max_length = 250)
+    patronymic = models.CharField('Отчество', max_length = 250, blank=True, null=True)
     birthday = models.DateField('Дата рождения', blank=True, null=True)
     address = models.CharField('Адрес', max_length = 250, blank=True, null=True)
     phone = models.CharField(verbose_name='Номер телефона', max_length=255, blank=True, null=True)
-    balance = models.IntegerField('Баланс', default=0)
     
     objects = MyUserManager()
 
@@ -44,5 +43,4 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'{self.last_name} {self.first_name} {self.patronymic}'
-
 

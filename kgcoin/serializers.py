@@ -22,7 +22,6 @@ class WalletForTransactionSerializer(serializers.ModelSerializer):
 
 
 class CoinTransactionSerializer(serializers.ModelSerializer):
-    user_wallet = WalletForTransactionSerializer(read_only=True)
 
     class Meta:
         model = CoinTransaction

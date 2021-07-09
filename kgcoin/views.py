@@ -36,6 +36,8 @@ class CoinTransactionView(viewsets.ModelViewSet):
             return Response('Ошибка. Выберете что-то одно: Покупка или продажа монеты', status=status.HTTP_403_FORBIDDEN)
         elif buy_data is None:
             sell_int = int(sell_data)
+            if sell_int > user_wallet.amount:
+                return Response('У вас недостаточно средств для данной продажи', status=status.HTTP_403_FORBIDDEN)
             sell_coin = CoinTransaction.objects.create(user_wallet=user_wallet, kgcoin=kgcoin, sell_amount=sell_int)
             sell_coin.transfer_coin()
             return Response(f'Продажа монет на сумму {sell_int * kgcoin.cost} сом успешно совершена', status=status.HTTP_201_CREATED)
